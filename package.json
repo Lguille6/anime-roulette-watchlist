@@ -1,18 +1,20 @@
 {
-  "name": "template",
+  "name": "anime-roulette-watchlist",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "npm run buid && wrangler dev",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "format": "prettier --write src/",
-    "format:check": "prettier --check src/"
+    "format:check": "prettier --check src/",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@cloudflare/vite-plugin-cloudflare": "^1.25.6",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.1",
     "@vueuse/core": "^14.2.1",
@@ -22,7 +24,8 @@
     "prettier": "^3.8.1",
     "tailwindcss": "^4.2.1",
     "vue": "^3.5.25",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "wrangler": "^4.71.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.2",

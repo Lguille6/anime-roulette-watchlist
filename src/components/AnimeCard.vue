@@ -49,6 +49,11 @@ const props = defineProps({
       <p class="mt-2 text-sm text-red-100/90">{{ error }}</p>
     </div>
 
-    <div v-else>Done</div>
+    <div
+      v-else
+      class="rounded-2xl border border-slate-700/60 bg-slate-800/50 p-6 text-center text-slate-300"
+    >
+      Pull the lever to spin the anime roulette and get a random anime recommendation!
+    </div>
   </section>
 </template>

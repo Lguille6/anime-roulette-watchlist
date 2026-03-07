@@ -50,13 +50,13 @@ const spinLabel = computed(() => {
               >
                 {{ spinLabel }}
               </button>
-              <p
-                v-if="cooldownLeft > 0"
-                class="mt-4 rounded-xl border border-amber-300/50 bg-amber-400/10 px-3 py-2 text-sm font-semibold text-amber-100"
-              >
-                Rate-limited. Try again in {{ cooldownLeft }}s.
-              </p>
             </div>
+            <p
+              v-if="cooldownLeft > 0"
+              class="mt-4 rounded-xl border border-amber-300/50 bg-amber-400/10 px-3 py-2 text-sm font-semibold text-amber-100"
+            >
+              Rate-limited. Try again in {{ cooldownLeft }}s.
+            </p>
           </div>
           <AnimeCard
             :loading="loading"
@@ -64,6 +64,7 @@ const spinLabel = computed(() => {
             :anime="anime"
           />
         </section>
+        <Watchlist />
       </div>
     </div>
   </main>

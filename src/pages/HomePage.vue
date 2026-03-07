@@ -2,8 +2,19 @@
 import { computed } from 'vue'
 import AnimeCard from '@/components/AnimeCard.vue'
 import { useAnimeRoulette } from '@/composables/useAnimeRoulette'
+import WatchList from '@/components/Watchlist.vue'
 
-const { anime, loading, error, spin, cooldownLeft } = useAnimeRoulette()
+const {
+  anime,
+  loading,
+  error,
+  spin,
+  cooldownLeft,
+  addToWatchlist,
+  watchlist,
+  isInWatchlist,
+  removeFromWatchlist,
+} = useAnimeRoulette()
 
 const spinDisabled = computed(() => loading.value || cooldownLeft.value > 0)
 
@@ -16,7 +27,7 @@ const spinLabel = computed(() => {
     return `Cooldown ${cooldownLeft.value}s`
   }
 
-  return 'Spin'
+  return 'SPIN 🎰'
 })
 </script>
 
@@ -26,10 +37,12 @@ const spinLabel = computed(() => {
   >
     <div class="mx-auto max-w-7xl">
       <header class="mb-8">
-        <p class="text-sx font-semibold tracking-[0.3em] text-cyan-300/90 uppercase">Project #4</p>
-        <h1 class="text=white mt-2 text-4xl font-black sm:text-5xl">Anime Roulette Machine</h1>
-        <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base"></p>
-        <p>Spin the reel, request a random anime to watch!</p>
+        <p class="text-xs font-semibold tracking-[0.3em] text-cyan-300/90 uppercase">Project #4</p>
+        <h1 class="mt-2 text-4xl font-black text-white sm:text-5xl">Anime Roulette Machine</h1>
+        <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
+          Spin the reel, request a random anime from Jinkan with VueUse useFech, and learnhow REST
+          APIs signal rate limiting with HTTP 429.
+        </p>
       </header>
 
       <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -40,12 +53,14 @@ const spinLabel = computed(() => {
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 class="text-xl font-bold text-white">Roulette</h2>
-                <p class="text-sm text-slate-300">Pull the lever for your next random anime!</p>
+                <p class="text-sm text-slate-300">
+                  Pull the lever for your next random anime recommendation.
+                </p>
               </div>
               <button
                 type="button"
                 :disabled="spinDisabled"
-                class="cursor-pointer rounded-full border border-cyan-300/70 bg-cyan-300/20 px-4 py-2 text-cyan-100 hover:bg-cyan-400/30 disabled:cursor-not-allowed disabled:opacity-60"
+                class="cursor-pointer rounded-full border border-cyan-300/70 bg-cyan-400/20 px-6 py-3 text-base font-black tracking-wide text-cyan-100 hover:bg-cyan-400/30 disabled:cursor-not-allowed disabled:opacity-60"
                 @click="spin"
               >
                 {{ spinLabel }}
@@ -62,9 +77,14 @@ const spinLabel = computed(() => {
             :loading="loading"
             :error="error"
             :anime="anime"
+            :in-watchlist="Boolean(anime && isInWatchlist(anime.mal_id))"
+            @add="addToWatchlist"
           />
         </section>
-        <Watchlist />
+        <WatchList
+          :items="watchlist"
+          @remove="removeFromWatchlist"
+        />
       </div>
     </div>
   </main>

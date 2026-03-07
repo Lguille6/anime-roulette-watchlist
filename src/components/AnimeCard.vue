@@ -58,7 +58,7 @@ watch(
 
 <template>
   <section
-    class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-sm"
+    class="rounded-3xl border border-pink-700/70 bg-pink-800/60 p-5 shadow-2xl shadow-pink-950/30 backdrop-blur-sm"
   >
     <div
       v-if="props.loading"
@@ -72,9 +72,9 @@ watch(
       </div>
 
       <div class="grid grid-cols-3 gap-2">
-        <div class="h-3 animate-pulse rounded bg-slate-700"></div>
-        <div class="h-3 animate-pulse rounded bg-slate-700"></div>
-        <div class="h-3 animate-pulse rounded bg-slate-700"></div>
+        <div class="h-3 animate-pulse rounded bg-pink-500"></div>
+        <div class="h-3 animate-pulse rounded bg-pink-500"></div>
+        <div class="h-3 animate-pulse rounded bg-pink-500"></div>
       </div>
       <div class="h-72 animate-pulse rounded-2xl bg-slate-800"></div>
     </div>
@@ -91,17 +91,17 @@ watch(
       v-else-if="anime"
       class="space-y-4"
     >
-      <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-800/60">
+      <div class="overflow-hidden rounded-2xl border border-pink-500/80 bg-pink-400/60">
         <img
           v-if="animeImage"
           :src="animeImage"
           :alt="anime.title"
-          class="h-80 w-full bg-slate-900/50 object-contain"
+          class="h-80 w-full bg-pink-900/50 object-contain"
           loading="lazy"
         />
         <div
           v-else
-          class="flex h-80 items-center justify-center bg-slate-800 text-slate-300"
+          class="flex h-80 items-center justify-center bg-pink-800 text-pink-300"
         >
           No poster available
         </div>
